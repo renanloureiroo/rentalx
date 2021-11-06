@@ -2,7 +2,7 @@ import { Category } from '../model/Category';
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
-} from './ICategoriesRepository';
+} from './implementations/ICategoriesRepository';
 
 // singleton
 
