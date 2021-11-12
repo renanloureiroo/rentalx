@@ -1,37 +1,48 @@
 {
   "openapi": "3.0.0",
-  "info":{
-    "title":"Rentalx Documentation",
+  "info": {
+    "title": "Rentalx Documentation",
     "description": "This is an API Rent",
     "version": "1.0.0",
     "contact": {
       "email": "renanpl47@gmail.com"
     }
   },
-  "paths":  {
-    "/categories" :{
-      "post":{
-        "tags":["Category"],
+  "tags": [
+    {
+      "name": "Category",
+      "description": "Categories of cars"
+    },
+    {
+      "name": "Specification",
+      "description": "Specification of cars"
+    }
+  ],
+  "paths": {
+    "/categories": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
         "summary": "Create a category",
         "description": "Create a new category",
-        "requestBody":{
-          "content":{
-            "application/json":{
-              "schema":{
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
                 "type": "object",
-                "properties":{
-                  "name":{
+                "properties": {
+                  "name": {
                     "type": "string"
                   },
                   "description": {
                     "type": "string"
                   }
                 },
-                "example":{
+                "example": {
                   "name": "Category name sample",
                   "description": "Category description sample"
                 }
-
               }
             }
           }
@@ -40,37 +51,109 @@
           "201": {
             "description": "Created"
           },
-          "400":{
+          "400": {
             "description": "Category already exists"
           }
         }
       },
       "get": {
-        "tags":["Category"],
+        "tags": [
+          "Category"
+        ],
         "summary": "List all categories",
         "description": "List all categories",
         "responses": {
-          "200":{
+          "200": {
             "description": "Success",
             "content": {
               "application/json": {
-                "schema":{
-                  "type":"array",
-                  "properties":{
-                    "name": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#components/schemas/Category"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/specifications": {
+      "post": {
+        "tags": [
+          "Specification"
+        ],
+        "summary": "Create Specification",
+        "description": "Create new Specification",
+        "operationId": "addSpecification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
                   }
                 }
               }
             }
           }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        }
+      },
+      "Specification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          }
         }
       }
     }
   }
-
 }
