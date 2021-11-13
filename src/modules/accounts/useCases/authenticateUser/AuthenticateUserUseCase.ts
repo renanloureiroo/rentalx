@@ -42,14 +42,15 @@ class AuthenticateUseUseCase {
       subject: user.id,
       expiresIn: '1d',
     });
-
-    return {
+    const tokenReturn: IReponse = {
+      token,
       user: {
         name: user.name,
         email: user.email,
       },
-      token,
     };
+
+    return tokenReturn;
   }
 }
 
