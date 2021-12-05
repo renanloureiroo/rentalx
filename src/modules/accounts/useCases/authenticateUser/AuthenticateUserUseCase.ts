@@ -18,7 +18,7 @@ interface IReponse {
   token: string;
 }
 @injectable()
-class AuthenticateUseUseCase {
+class AuthenticateUserUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository
@@ -38,7 +38,7 @@ class AuthenticateUseUseCase {
     }
 
     // Gerar jwt
-    const token = sign({}, process.env.SECRET_KEY, {
+    const token = sign({}, '68d1e3110aa613b1723f7e81a7191c5b2c6d291e', {
       // subject sempre recebe o id do usuário
       subject: user.id,
       expiresIn: '1d',
@@ -55,4 +55,4 @@ class AuthenticateUseUseCase {
   }
 }
 
-export { AuthenticateUseUseCase };
+export { AuthenticateUserUseCase };
